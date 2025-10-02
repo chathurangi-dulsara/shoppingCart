@@ -1,46 +1,43 @@
-import React from "react"
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from "../Utils/Slices/cart-slice";
 
 export default function ProductTile({ product }) {
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart);
 
-    const dispatch = useDispatch();
-    const {cart} =useSelector(state=>state)
+  const isInCart = Array.isArray(cartItems) && cartItems.some(item => item.id === product.id)
 
-    function handleAddToCart(){
-        dispatch(addToCart(product))
+  function handleAddToCart() {
+    dispatch(addToCart(product));
+  }
 
-    }
-
-    function handleRemoveFromCart() {
-        console.log("removed")
-        dispatch(removeFromCart(product.id))     
-
-    }
-
+  function handleRemoveFromCart() {
+    dispatch(removeFromCart(product.id));
+    console.log("removed")
+  }
 
   return (
-    <div>
-      <div className="group flex flex-col items-center border-2 border-red-900 gap-3 p-4 h-[360px] mt-10 ml-5 rounded-xl">
-        <div className="h-[180px]">
-          <img
-            src={product?.image}
-            alt={product.title}
-            className="object-cover h-full w-full"
-          />
-        </div>
-        <div>
-            <h1 className="w-40 truncate mt-3 text-gray-700 font-bold text-lg">{product?.title}</h1>
-        </div>
-        <div className ="flex items-center justify-center w-full mt-5">
-            <button onClick={cart.some(item=>item.id === product.id) ?handleRemoveFromCart : handleAddToCart} className=" bg-red-900 text-white border-2 rounded-lg font-bold p-4">
-                {
-                cart.some(item=>item.id === product.id) ? 'Remove from cart': 'Add to cart' 
-            }
-           </button>
-        </div>
-      </div>
+    <div className="flex flex-col items-center border border-red-900 rounded-lg shadow-md p-4 transition hover:shadow-lg">
+      <img
+        src={product.image}
+        alt={product.title}
+        className="h-40 object-contain mb-3"
+      />
+      <h2 className="font-semibold text-center text-gray-800 truncate w-40">
+        {product.title}
+      </h2>
+      <p className="text-red-900 font-bold mt-2">${product.price.toFixed(2)}</p>
+
+      <button onClick={isInCart ? handleRemoveFromCart : handleAddToCart}
+        className={`mt-4 w-full py-2 rounded-md font-semibold transition ${
+          isInCart
+            ? "bg-gray-200 text-red-900 border border-red-900 hover:bg-red-900 hover:text-white"
+            : "bg-red-900 text-white border border-red-900 hover:bg-red-800"
+        }`}
+      >
+        {isInCart ? 'Remove from Cart' : 'Add to Cart'}
+      </button>
     </div>
   );
 }
-

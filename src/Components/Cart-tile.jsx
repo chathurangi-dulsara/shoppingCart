@@ -1,7 +1,13 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { removeFromCart } from '../Utils/Slices/cart-slice';
 
 export default function CartTile({ cartItem }) {
+
+  const dispatch = useDispatch();
+
     function handleRemoveFromCart(){
+      dispatch(removeFromCart(cartItem));
 
     }
 
@@ -10,7 +16,9 @@ export default function CartTile({ cartItem }) {
     <div className='flex p-3'>
       <img src={cartItem.image} alt={cartItem.name} className='w-32 h-32 object-cover mb-2' />
       <h2 className='text-lg font-bold'>{cartItem.name}</h2>
-      <p className='text-gray-600'>${cartItem.price}</p>
+      <div className='display relative'>
+      <p className='text-white font-bold text-lg'>${cartItem.price}</p>
+      </div>
       </div>
       <div>
          <button onClick={handleRemoveFromCart}
