@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './Pages/Home'
 import Header from './Components/Header'
 import Cart from './Pages/Cart'
+import ThemeSwitcher from './Components/ThemeSwitcher'
 
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
   return (
     <>
     <Header/>
+  
    
     <Routes>
     <Route path='/' element={<Home/>}></Route>
