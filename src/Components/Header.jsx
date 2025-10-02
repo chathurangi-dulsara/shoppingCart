@@ -19,7 +19,7 @@ export default function Header() {
         transition-all duration-300
       "
     >
-      {/* Left: Logo */}
+    
       <Link
         to="/"
         className="flex items-center gap-2 group"
@@ -29,7 +29,7 @@ export default function Header() {
         </h1>
       </Link>
 
-      {/* Center: Navigation Links */}
+    
       <div className="hidden md:flex items-center gap-8 font-medium">
         {[
           { path: "/", label: "Home" },
@@ -56,20 +56,18 @@ export default function Header() {
         ))}
       </div>
 
-      {/* Right: Icons */}
       <div className="flex items-center gap-4">
         <Link
           to="/cart"
           className="relative text-gray-700 dark:text-gray-200 hover:text-red-700 dark:hover:text-red-300 transition-colors"
         >
           <BsCart size={22} />
-          {/* Cart Count Badge */}
+
           <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-semibold rounded-full px-1.5">
 
           </span>
         </Link>
 
-        {/* Theme Switcher */}
         <ThemeSwitcher />
       </div>
     </nav>
