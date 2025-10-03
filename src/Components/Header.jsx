@@ -68,8 +68,10 @@ export default function Header() {
           </span>
         </Link>
 
-        <ThemeSwitcher />
+        
       </div>
+       <ThemeSwitcher/>
     </nav>
+    
   );
 }
