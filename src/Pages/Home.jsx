@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { Await } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
 import ProductTile from '../Components/ProductTile';
+import ThemeContext from '../Context/ThemeContext';
+import ThemeSwitcher from '../Components/ThemeSwitcher';
 
 
 export default function Home() {
@@ -29,6 +31,7 @@ useEffect(() => {
 
   return (
     <div>
+     
       {
         loading ? <div className="min-h-screen flex justify-center items-center">
           <ClipLoader
@@ -50,6 +53,7 @@ useEffect(() => {
           </div>
         )
       }
+    
     </div>
   )
 }

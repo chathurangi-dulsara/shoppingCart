@@ -1,10 +1,30 @@
-// Components/ThemeSwitcher.jsx
 import React from 'react';
 import { useTheme } from '../Context/ThemeContext';
-import { Moon, Sun } from 'lucide-react'; // optional icons from lucide-react
+import { Moon, Sun } from 'lucide-react'; 
 
 const ThemeSwitcher = () => {
   const { theme, toggleTheme } = useTheme();
+  const saveDarkMode = localStorage.getItem("theme") === "dark";
+  const [isDarkMode, setIsDarkMode] = React.useState(saveDarkMode);
+
+    React.useEffect(() => {
+        const body= document.body;
+        if(isDarkMode){
+            body.classList.add("dark", "bg-gray-800");
+            body.classList.remove("bg-white");
+            document.querySelector("body").setAttribute("theme","dark");
+
+        }
+        else{
+            body.classList.remove("dark", "bg-gray-800");
+            body.classList.add("bg-white");
+            document.querySelector("body").setAttribute("theme","light");
+
+        }
+        localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+    }, [isDarkMode]);
+
+  
 
   return (
     <button
